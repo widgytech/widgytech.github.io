@@ -1,0 +1,433 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Widgy — B2B affiliate monetization platform</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root{
+      --bg-dark:#181A30;
+      --bg-mid:#292C52;
+      --text-muted:#E2E2E2;
+      --border:#E6E8F0;
+      --tag:#A3A3A3;
+      --grad:linear-gradient(180deg,#3872D5 0%,#51C3D3 100%);
+      --grad-border:#34A5CB;
+      --max:890px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background:#fff;
+      color:#0f1222;
+    }
+
+    h1,h2,h3,h4,h5,h6{
+      font-family:'Epilogue', system-ui, sans-serif;
+      letter-spacing:-0.02em;
+      margin:0 0 12px 0;
+    }
+
+    h1{ font-size:42px; font-weight:800; }
+    h2{
+      font-size:32px;
+      font-weight:800;
+      background:var(--grad);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+      background-clip:text;
+      color:transparent;
+    }
+
+    p{ margin:0 0 12px 0; line-height:1.6; }
+
+    .container{
+      width:100%;
+      max-width:var(--max);
+      margin:0 auto;
+      padding:0 20px;
+    }
+    .container--narrow{ max-width:550px; }
+
+    /* Header */
+    .header{
+      background:var(--bg-dark);
+      color:#fff;
+      padding:20px 0 50px;
+      text-align:center;
+    }
+    .header p{ color:var(--text-muted); font-size:16px; }
+
+    .logo{ margin:50px 0; }
+    .logo img{ width:100%; max-width:300px; }
+    .widget img{ width:100%; max-width:450px; margin-bottom:20px }
+
+    .btn{
+      display:inline-block;
+      padding:16px 30px;
+      border-radius:50px;
+      text-decoration:none;
+      color:#fff;
+      font-weight:800;
+      background:var(--grad);
+      border:3px solid var(--grad-border);
+      cursor:pointer;
+    }
+    .btn:hover{ opacity:.92; }
+
+    /* Tags */
+    .tag{
+      padding:10px;
+      border:1px solid var(--tag);
+      border-radius:10px;
+      color:var(--tag);
+      font-size:12px;
+      width:fit-content;
+      margin:50px auto 10px;
+      text-align:center;
+    }
+    .tag--spaced{ margin-top:80px; margin-bottom:40px; }
+
+    /* Product sections */
+    .product{
+      margin:0 auto;
+      max-width:var(--max);
+      padding:0 20px;
+      text-align:left;
+    }
+    .product + .product{ margin-top:40px; }
+    .product--spaced{ margin-bottom:80px; }
+
+    .product__row{
+      display:flex;
+      gap:20px;
+      align-items:flex-start;
+      justify-content:space-between;
+    }
+    .product__copy{ flex:1; min-width:500px; }
+    .product__media{ width:350px; max-width:100%; }
+    .product__logo img{ height:50px; margin-bottom:20px }
+
+    .split-lists{
+      display:flex;
+      gap:24px;
+      margin-top:10px;
+    }
+    .split-lists ul{
+      margin:0;
+      padding-left:18px;
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+      min-width:220px;
+    }
+
+    /* Details / Read more */
+    details{ margin-top:20px; }
+    summary{
+      cursor:pointer;
+      font-weight:700;
+    }
+    summary::marker{ display:none; }
+
+    .details__body{ margin-top:12px; }
+
+    .details-grid{
+      display:flex;
+      gap:24px;
+      flex-wrap:wrap;
+      margin-top:10px;
+      margin-bottom: 20px;
+    }
+    .details-col{
+      flex:1;
+      min-width:220px;
+    }
+    .details-col p{ margin:0 0 6px 0; }
+
+    .tight-list{
+      margin:0;
+      padding-left:18px;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+    }
+
+    .example-card{
+      background:#F6F7FB;
+      border:1px solid var(--border);
+      border-radius:12px;
+      padding:14px;
+      margin-top:10px;
+      margin-bottom: 20px;
+    }
+    .example-card p{ margin:0 0 10px 0; }
+    .example-card ol{
+      margin:0;
+      padding-left:18px;
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+
+    /* CTA */
+    .cta-card{
+      text-align:center;
+      max-width:450px;
+      margin:0 auto 80px;
+      padding:0 20px;
+    }
+
+    /* Benefits bar */
+    .benefits{
+      display:flex;
+      justify-content:center;
+      gap:30px;
+      background:var(--bg-mid);
+      color:#fff;
+      padding:30px 20px;
+      font-size:20px;
+      font-weight:600;
+    }
+    .benefits__col{
+      flex:1;
+      max-width:400px;
+    }
+    .benefit{
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .benefit + .benefit{ margin-top:20px; }
+
+    /* Footer */
+    footer{
+      background:var(--bg-dark);
+      color:#fff;
+      padding:50px 40px;
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:20px;
+    }
+    footer img{ width:100%; max-width:200px; }
+    footer a{ color:#fff; text-decoration:none; }
+
+    /* Responsive */
+    @media (max-width: 860px){
+      .product { max-width:500px }
+      .product__row{ flex-direction:column;}
+      .product__copy{ min-width:0; }
+      .product__media{ width:100%; }
+      .split-lists ul{ min-width:0; }
+      .benefits{ flex-direction:column; text-align:left; }
+    }
+
+    @media (max-width: 860px){
+      h1,h2{ font-size:28px; }
+      .header p{ font-size:20px; }
+      footer{ flex-direction:column; text-align:center; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="container container--narrow">
+      <div class="logo">
+        <img src="logo.svg" alt="Widgy" />
+      </div>
+
+      <div class="widget">
+        <img src="widget.svg" alt="" />
+      </div>
+
+      <h1>Turning user attention into high-value rewards</h1>
+      <p>
+        Widgy offers website owners plug-and-play monetization solutions that integrate seamlessly into existing websites and apps.
+      </p>
+
+      <a class="btn" href="mailto:sales@widgytech.com">Partner with Widgy →</a>
+    </div>
+  </header>
+
+  <div class="tag tag--spaced">OUR PRODUCTS</div>
+
+  <!-- Engage -->
+  <section class="product product--spaced" aria-labelledby="engage-title">
+    <div class="product__row">
+      <div class="product__copy">
+        <div class="product__logo">
+          <img src="engage-logo.svg" alt="Widgy Engage" />
+        </div>
+
+        <p id="engage-title">
+          <b>Widgy Engage</b> helps high-traffic websites monetize user attention by rewarding real engagement with high-converting iGaming offers.
+        </p>
+
+        <div class="split-lists" aria-label="Engage highlights">
+          <ul>
+            <li>No login required</li>
+            <li>Plug-and-play</li>
+            <li>Rewarded UX</li>
+          </ul>
+          <ul>
+            <li>High-intent conversions</li>
+            <li>CPA-driven</li>
+            <li>70/30 revenue split</li>
+          </ul>
+        </div>
+
+        <details>
+          <summary>Read more: <b>Triggers and mechanics</b></summary>
+
+          <div class="details__body">
+            <p>
+              Engage activates after <b>real on-site engagement</b> — so it feels like a reward, not an interruption.
+              Users don’t need to create an account, and rewards can be delivered instantly.
+            </p>
+
+            <div class="details-grid">
+              <div class="details-col">
+                <p><b>Engagement triggers</b></p>
+                <ul class="tight-list">
+                  <li>Watched video to completion</li>
+                  <li>Watched X number of videos</li>
+                  <li>Time spent on site</li>
+                  <li>Exit intent pop-up</li>
+                </ul>
+              </div>
+
+              <div class="details-col">
+                <p><b>Reward mechanics</b></p>
+                <ul class="tight-list">
+                  <li>Fixed free spins</li>
+                  <li>Increasing rewards</li>
+                  <li>Mystery rewards</li>
+                  <li>Limited-time offers</li>
+                </ul>
+              </div>
+            </div>
+
+            <p style="margin-bottom:0;">
+              Because rewards appear at high-intent moments, Engage typically drives stronger CPA performance than traditional ad placements.
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <div class="product__media">
+        <img src="product-widgy-engage.svg" alt="Widgy Engage product" style="width:100%; height:auto;" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Payments -->
+  <section class="product" aria-labelledby="payments-title">
+    <div class="product__row">
+      <div class="product__copy">
+        <div class="product__logo">
+          <img src="payments-logo.svg" alt="Widgy Payments" />
+        </div>
+
+        <p id="payments-title">
+          <b>Widgy Payments</b> helps entertainment platforms double revenue per user by delivering 4× perceived value on every deposit.
+        </p>
+
+        <div class="split-lists" aria-label="Payments highlights">
+          <ul>
+            <li>Integrated checkout</li>
+            <li>Bonus funded</li>
+            <li>Discreet billing</li>
+          </ul>
+          <ul>
+            <li>Casino-backed</li>
+            <li>Conversion-optimized</li>
+            <li>Higher revenue</li>
+          </ul>
+        </div>
+
+        <details>
+          <summary>Read more: <b>The €20 example</b></summary>
+
+          <div class="details__body">
+            <p>
+              Widgy Payments increases conversion by offering users an alternative payment flow that delivers
+              <b>more perceived value</b> without adding friction.
+            </p>
+
+            <div class="example-card">
+              <p><b>The €20 example</b></p>
+              <ol>
+                <li>
+                  <b>Select Widgy as a payment option:</b><br>
+                  The user chooses Widgy instead of depositing directly on the site.
+                </li>
+                <li>
+                  <b>Deposit via a casino partner:</b><br>
+                  The user is routed to a Widgy-affiliated casino and deposits €20, receiving a
+                  100% welcome bonus (€40 total value).
+                </li>
+                <li>
+                  <b>Receive added value on the original site:</b><br>
+                  The user also receives <b>€40 worth of cam tokens</b> on the site where they started.
+                </li>
+              </ol>
+            </div>
+
+            <p style="margin-bottom:0;">
+              Result: a single €20 payment delivers significantly higher perceived value, driving better conversion and higher revenue per user —
+              while keeping billing discreet and the checkout experience seamless.
+            </p>
+          </div>
+        </details>
+      </div>
+
+      <div class="product__media">
+        <img src="product-widgy-payments.svg" alt="Widgy Payments product" style="width:100%; height:auto; max-height:300px;" />
+      </div>
+    </div>
+  </section>
+
+  <div class="tag" style="margin-bottom:50px;">PARTNERSHIP OPPORTUNITIES</div>
+
+  <section class="cta-card">
+    <h2>Ready to learn more?</h2>
+    <p>If you’re interested in integrating Widgy or exploring partnership opportunities, we’d love to hear from you.</p>
+    <a class="btn" href="mailto:sales@widgytech.com">Request demo →</a>
+  </section>
+
+  <section class="benefits" aria-label="Widgy benefits">
+    <div class="benefits__col">
+      <div class="benefit"><img src="icon-circle.svg" alt="" />Effortless to launch</div>
+      <div class="benefit"><img src="icon-circle.svg" alt="" />Built to scale globally</div>
+    </div>
+    <div class="benefits__col">
+      <div class="benefit"><img src="icon-circle.svg" alt="" />Transparent economics</div>
+      <div class="benefit"><img src="icon-circle.svg" alt="" />Optimised for conversion</div>
+    </div>
+  </section>
+
+  <footer>
+    <img src="logo.svg" alt="Widgy" />
+    <div>
+      © 2025 Widgy AB. All rights reserved.<br />
+      For partnership inquiries: <a href="mailto:sales@widgytech.com">sales@widgytech.com</a>
+    </div>
+  </footer>
+
+</body>
+</html>
